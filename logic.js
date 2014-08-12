@@ -1,3 +1,5 @@
+var colors = ['grey','red','green','blue','yellow'];
+var x = "";
 function disp(board,board_size)
 {
 	
@@ -6,7 +8,7 @@ function disp(board,board_size)
 	{
 		for (j=0;j<board_size;j++)
 		{
-			html_str+= "<span class= 'embossed' id='box"+board[i][j]+"' style='left:"+row+"px;top:"+col+"px'></span>";
+			html_str+= "<span class= 'embossed box' id='box"+i+""+j+"' style='left:"+row+"px;top:"+col+"px;background-color:"+colors[board[i][j]]+"'></span>";
 			row+=20;
 		}
 		//html_str+= "<br>";
@@ -17,7 +19,10 @@ function disp(board,board_size)
 	var x = document.getElementById("container");
 	document.getElementById("container").innerHTML=html_str;
 }
-
+/*function animate(xcoord,ycoord,value)
+{
+	
+}*/
 function init(board,board_size)
 {
 	board = new Array(board_size);
@@ -35,7 +40,6 @@ function init(board,board_size)
 var board = new Array();
 var board_size = 30
 board = init(board,board_size);
-console.log(board);
 var score_user1 = 0;
 var score_user2 = 0;
 function clicked(value,user)
@@ -52,9 +56,10 @@ function clicked(value,user)
 		while(temp_stack.length != 0)
 		{
 			var coord = temp_stack.pop();
-			console.log(coord);
 			var xcoord = coord[0];
 			var ycoord = coord[1];
+			console.log(coord);
+			//animate(xcoord,ycoord,value);
 			board[xcoord][ycoord] = value;
 			score_user1++;
 			if((xcoord+1) < board_size && board[xcoord+1][ycoord] == currvalue )
@@ -104,7 +109,7 @@ function clicked(value,user)
 		while(temp_stack.length != 0)
 		{
 			var coord = temp_stack.pop();
-			console.log(coord);
+			//console.log(coord);
 			var xcoord = coord[0];
 			var ycoord = coord[1];
 			board[xcoord][ycoord] = value;
